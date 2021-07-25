@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "1c1d7276-8172-43fc-945a-5437146f2470"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -27,6 +30,9 @@
               "src/assets"
             ],
             "styles": [
+              {
+                "input": "src/my-theme.scss"
+              },
               "src/styles.css"
             ],
             "scripts": []
@@ -94,6 +100,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.css"
             ],
             "scripts": []

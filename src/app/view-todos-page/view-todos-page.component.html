@@ -1,0 +1,4 @@
+<mat-toolbar fxLayout="row" fxLayoutAlign="end center" color="primary">
+  <app-add-todo-button (addTodoDialogCloseEvent)="addTodoDialogCloseEventHandler()"></app-add-todo-button>
+</mat-toolbar>
+<app-display-todos-table [randomNumber]="randomNumber" ></app-display-todos-table>

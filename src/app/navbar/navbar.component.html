@@ -1,0 +1,84 @@
+<mat-toolbar
+  class="topnav"
+  color="primary"
+  fxLayout="row"
+  fxLayoutAlign="space-between center"
+>
+  <span class="logo" routerLink="/home">MinimaLists</span>
+  <div
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+    class="navbarButtonsContainer"
+    *ngIf="!(isHandset$ | async)"
+  >
+    <button mat-raised-button routerLink="/home">Home</button>
+    <button mat-raised-button routerLink="../login">Login</button>
+    <button mat-raised-button routerLink="../signup">Signup</button>
+  </div>
+</mat-toolbar>
+
+<!-- <mat-drawer-container class="sidenav-container">
+  <mat-drawer
+    #drawer
+    class="sidenav"
+    [ngClass]="{ hidden: (isHandset$ | async) === false }"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+  >
+    <mat-toolbar color="primary">Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item href="#">Login</a>
+      <a mat-list-item href="#">Signup</a>
+      <a mat-list-item href="#">Home</a>
+    </mat-nav-list>
+  </mat-drawer>
+  
+  <mat-drawer-content>
+    <mat-toolbar
+      class="topnav"
+      color="primary"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <span class="logo">MinimaLists</span>
+      <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        class="navbarButtonsContainer"
+        *ngIf="!(isHandset$ | async)"
+      >
+        <button mat-raised-button routerLink="/home">Home</button>
+        <button mat-raised-button routerLink="../login">Login</button>
+        <button mat-raised-button routerLink="../signup">Signup</button>
+      </div>
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+    </mat-toolbar>
+    <ng-content></ng-content>
+    Add Content Here
+  </mat-drawer-content>
+</mat-drawer-container> -->
+
+<!-- <p>
+  <mat-toolbar>
+   <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>My App</span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+   <mat-icon>share</mat-icon>
+ </button>
+</mat-toolbar>
+</p> -->
