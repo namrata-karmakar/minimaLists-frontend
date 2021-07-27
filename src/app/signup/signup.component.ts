@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar/';
 import { SignupDto, UserService } from '../services/user.service';
 import { dateOfBirthValidator } from '../validations/dateOfBirthValidator';
 import { passwordsMatchValidator } from '../validations/passwordsMatchValidator';
@@ -12,7 +13,13 @@ import { passwordsMatchValidator } from '../validations/passwordsMatchValidator'
 export class SignupComponent implements OnInit {
   hidePassword = true;
   hideConfirmPassword = true;
-  constructor(private formBuilder: FormBuilder, private userService: UserService) { }
+  horizontalPosition: MatSnackBarHorizontalPosition = 'end';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
+  constructor(
+    private formBuilder: FormBuilder, 
+    private userService: UserService, 
+    private _snackBar: MatSnackBar
+  ) { }
 
   signupFormGroup = this.formBuilder.group(
     {
@@ -73,6 +80,13 @@ export class SignupComponent implements OnInit {
     } catch (e) {
       console.error(e);
     }
+  }
+
+  openSnackBar() {
+    this._snackBar.open('Cannonball!!', 'Splash', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
   }
 
 }
