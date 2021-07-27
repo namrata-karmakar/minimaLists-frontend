@@ -12,8 +12,4 @@ export class ViewTodosPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addTodoDialogCloseEventHandler() {
-    this.randomNumber = Math.random();
-  }
-
 }
