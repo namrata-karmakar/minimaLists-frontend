@@ -16,14 +16,22 @@ export class TodosService {
     return this.http.post(`${environment.TODO}`, todoData, httpOptions).toPromise();
   }
 
-  getTodosByUserID(userID: string | null): Promise<TodosDataDto[]> {
+  getTodosByUserId(userID: string | null): Promise<TodosDataDto[]> {
     const httpOptions = {
       headers: new HttpHeaders({
         'x-token-header': `${sessionStorage.getItem("token")}`
       })
     };
-    console.log(httpOptions)
     return this.http.get<TodosDataDto[]>(`${environment.TODO}/user/${userID}`, httpOptions).toPromise();
+  }
+
+  deleteTodoById(_id: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'x-token-header': `${sessionStorage.getItem("token")}`
+      })
+    };
+    this.http.delete(`${environment.TODO}/id/${_id}`, httpOptions).toPromise();
   }
 }
 
