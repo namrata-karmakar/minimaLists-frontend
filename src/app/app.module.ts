@@ -34,6 +34,10 @@ import { MatListModule } from '@angular/material/list';
 import { PageComponent } from './page/page.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { LoggedInNavbarComponent } from './logged-in-navbar/logged-in-navbar.component';
+import { LogoutComponent } from './logout/logout.component';
+import { LogoutDialogComponent } from './logout-dialog/logout-dialog.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +52,9 @@ import { HomeComponent } from './home/home.component';
     PageComponent,
     FooterComponent,
     HomeComponent,
+    LoggedInNavbarComponent,
+    LogoutComponent,
+    LogoutDialogComponent,
   ],
   entryComponents: [AddTodoDialogComponent],
   imports: [
@@ -72,7 +79,8 @@ import { HomeComponent } from './home/home.component';
     MatDividerModule,
     LayoutModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatSnackBarModule
   ],
   providers: [UserService, TodosService],
   bootstrap: [AppComponent]
