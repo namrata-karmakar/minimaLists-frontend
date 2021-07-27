@@ -1,0 +1,19 @@
+<mat-toolbar
+  class="topnav"
+  color="primary"
+  fxLayout="row"
+  fxLayoutAlign="space-between center"
+>
+  <span class="logo" routerLink="/home">MinimaLists</span>
+  <div
+    fxLayout="row"
+    fxLayoutAlign="space-around center"
+    class="navbarButtonsContainer"
+    *ngIf="!(isHandset$ | async)"
+  >
+    <app-add-todo-button
+      (addTodoDialogCloseEvent)="addTodoDialogCloseEventHandler()"
+    ></app-add-todo-button>
+    <app-logout></app-logout>
+  </div>
+</mat-toolbar>
