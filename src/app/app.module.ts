@@ -38,6 +38,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LoggedInNavbarComponent } from './logged-in-navbar/logged-in-navbar.component';
 import { LogoutComponent } from './logout/logout.component';
 import { LogoutDialogComponent } from './logout-dialog/logout-dialog.component';
+import { DeleteTodoDialogComponent } from './delete-todo-dialog/delete-todo-dialog.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { LogoutDialogComponent } from './logout-dialog/logout-dialog.component';
     LoggedInNavbarComponent,
     LogoutComponent,
     LogoutDialogComponent,
+    DeleteTodoDialogComponent,
   ],
   entryComponents: [AddTodoDialogComponent],
   imports: [
