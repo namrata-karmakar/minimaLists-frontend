@@ -1,18 +1,6 @@
-<mat-toolbar
-  class="topnav"
-  color="primary"
-  fxLayout="row"
-  fxLayoutAlign="space-between center"
->
-  <span class="logo" routerLink="/home">MinimaLists</span>
-  <div
-    fxLayout="row"
-    fxLayoutAlign="space-between center"
-    class="navbarButtonsContainer"
-    *ngIf="!(isHandset$ | async)"
-  >
-    <button mat-raised-button routerLink="/home">Home</button>
-    <button mat-raised-button routerLink="../login">Login</button>
-    <button mat-raised-button routerLink="../signup">Signup</button>
-  </div>
-</mat-toolbar>
+<ng-template *ngIf="isLoggedIn; else loggedOut">
+    <app-logged-in-navbar></app-logged-in-navbar>
+</ng-template>
+<ng-template #loggedOut>
+    <app-logged-out-navbar></app-logged-out-navbar>
+</ng-template>
