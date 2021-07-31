@@ -34,7 +34,7 @@ export class DisplayTodosTableComponent implements OnChanges {
 	}
 
 	async deleteTodo(todo: any): Promise<void> {
-		const { _id, userID } = todo;
+		const { _id } = todo;
 		await this.todosService.deleteTodoById(_id);
 		await this.getTodos();
 	}
