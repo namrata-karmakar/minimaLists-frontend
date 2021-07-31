@@ -14,7 +14,6 @@ export class LoginComponent implements OnInit {
   duration: number = 3000;
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
-  isLoggedIn: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
