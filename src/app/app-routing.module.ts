@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { InterstitialPageComponent } from './interstitial-page/interstitial-page.component';
 import { LoginComponent } from './login/login.component';
 import { PageComponent } from './page/page.component';
 import { SignupComponent } from './signup/signup.component';
@@ -8,10 +9,14 @@ import { ViewTodosPageComponent } from './view-todos-page/view-todos-page.compon
 
 const routes: Routes = [{
   path: '',
+  component: InterstitialPageComponent,
+},
+{
+  path: 'page',
   component: PageComponent,
   children: [
     {
-      path: '',
+      path: 'home',
       component: HomeComponent,
     },
     {
@@ -21,12 +26,12 @@ const routes: Routes = [{
     {
       path: 'signup',
       component: SignupComponent
-    },
-    {
-      path: 'todos',
-      component: ViewTodosPageComponent
     }
   ]
+},
+{
+  path: 'todos',
+  component: ViewTodosPageComponent
 }];
 
 @NgModule({
