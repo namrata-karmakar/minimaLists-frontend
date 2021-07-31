@@ -27,7 +27,7 @@ import { TodosService } from './services/todos.service';
 import { UserService } from './services/user.service';
 import { DisplayTodosTableComponent } from './display-todos-table/display-todos-table.component';
 import { ViewTodosPageComponent } from './view-todos-page/view-todos-page.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { LoggedOutNavbarComponent } from './logged-out-navbar/logged-out-navbar.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
@@ -39,6 +39,7 @@ import { LoggedInNavbarComponent } from './logged-in-navbar/logged-in-navbar.com
 import { LogoutComponent } from './logout/logout.component';
 import { LogoutDialogComponent } from './logout-dialog/logout-dialog.component';
 import { DeleteTodoDialogComponent } from './delete-todo-dialog/delete-todo-dialog.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { DeleteTodoDialogComponent } from './delete-todo-dialog/delete-todo-dial
     AddTodoDialogComponent,
     DisplayTodosTableComponent,
     ViewTodosPageComponent,
-    NavbarComponent,
+    LoggedOutNavbarComponent,
     PageComponent,
     FooterComponent,
     HomeComponent,
@@ -57,6 +58,7 @@ import { DeleteTodoDialogComponent } from './delete-todo-dialog/delete-todo-dial
     LogoutComponent,
     LogoutDialogComponent,
     DeleteTodoDialogComponent,
+    NavbarComponent,
   ],
   entryComponents: [AddTodoDialogComponent],
   imports: [
