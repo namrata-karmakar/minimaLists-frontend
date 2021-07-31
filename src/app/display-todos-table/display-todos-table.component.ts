@@ -38,4 +38,8 @@ export class DisplayTodosTableComponent implements OnChanges {
 		await this.todosService.deleteTodoById(_id);
 		await this.getTodos();
 	}
+
+	addTodoDialogCloseEventHandler() {
+		this.getTodos();
+	}
 }
