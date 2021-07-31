@@ -14,9 +14,11 @@ export class AddTodoDialogComponent implements OnInit {
     { value: 'In Progress', viewValue: 'In Progress' },
     { value: 'Done', viewValue: 'Done' }
   ]
-  constructor(private formBuilder: FormBuilder,
+  constructor(
+    private formBuilder: FormBuilder,
     private todosService: TodosService,
-    public dialogRef: MatDialogRef<AddTodoDialogComponent>) { }
+    public dialogRef: MatDialogRef<AddTodoDialogComponent>
+  ) { }
 
   addTodoFormGroup = this.formBuilder.group({
     todo: ['', [Validators.required]],
