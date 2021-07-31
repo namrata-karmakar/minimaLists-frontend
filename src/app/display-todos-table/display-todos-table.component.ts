@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, ViewChild } from '@angular/core';
 import { TodosDataDto, TodosService } from '../services/todos.service';
-import { MatTable } from '@angular/material/table';
+import { DeleteTodoDialogComponent } from '../delete-todo-dialog/delete-todo-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
 	selector: 'app-display-todos-table',
@@ -11,28 +12,30 @@ export class DisplayTodosTableComponent implements OnChanges {
 
 	columnsToDisplay: string[] = ['todos', 'status', 'editButton', 'deleteButton'];
 	@Input() randomNumber: number = 0;
-	@ViewChild(MatTable) table!: MatTable<any>
 	dataSource: TodosDataDto[] = [];
 
-	constructor(private todosService: TodosService) { }
+	constructor(private todosService: TodosService, private dialog: MatDialog) { }
 
 	ngOnChanges(): void {
 		this.getTodos();
-		this.table.renderRows();
 	}
 
 	async getTodos() {
 		const userID: string | null = sessionStorage.getItem("userID");
-		console.log(userID);
 		this.dataSource = await this.todosService.getTodosByUserId(userID);
-		this.table.renderRows();
 		this.dataSource = this.dataSource.reverse();
+	}
+
+	openDeleteTodoConfirmDialog() {
+		let dialogRef = this.dialog.open(DeleteTodoDialogComponent, {
+			height: '400px',
+			width: '600px',
+		})
 	}
 
 	async deleteTodo(todo: any): Promise<void> {
 		const { _id, userID } = todo;
 		await this.todosService.deleteTodoById(_id);
-		this.dataSource = await this.todosService.getTodosByUserId(userID);
-		this.table.renderRows();
+		await this.getTodos();
 	}
 }
