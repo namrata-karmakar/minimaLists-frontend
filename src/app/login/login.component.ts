@@ -10,10 +10,12 @@ import { LoginDto, UserService } from '../services/user.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  hide = true;
-  duration = 3000;
+  hide: boolean = true;
+  duration: number = 3000;
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
+  isLoggedIn: boolean = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
@@ -46,8 +48,9 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('token', token);
       sessionStorage.setItem('userID', userID);
       if (token) {
+        sessionStorage.setItem('isLoggedIn', 'true');
         this.navigateToViewTodosPage();
-        this.openSnackBar('Successfully logged in')
+        this.openSnackBar('Successfully logged in');
       }
     } catch (e) {
       console.error(e);
