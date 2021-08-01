@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { TodosService, TodosDataDto, TodoDto } from '../services/todos.service';
 
 @Component({
   selector: 'app-delete-todo-dialog',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeleteTodoDialogComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private todosService: TodosService,
+    private dialogRef: MatDialogRef<DeleteTodoDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: TodosDataDto
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  onCancel() {
+    this.dialogRef.close();
+  }
+
+  async deleteTodo(data: TodosDataDto): Promise<void> {
+    try {
+      const { _id } = data;
+      await this.todosService.deleteTodoById(_id);
+      this.dialogRef.close();
+    } catch (e) {
+      console.error(e);
+    }
+
   }
 
 }
