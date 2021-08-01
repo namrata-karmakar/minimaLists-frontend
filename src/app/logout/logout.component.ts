@@ -15,11 +15,7 @@ export class LogoutComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(LogoutDialogComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+    this.dialog.open(LogoutDialogComponent);
   }
 
 }
