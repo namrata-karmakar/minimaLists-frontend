@@ -16,7 +16,7 @@ export class InterstitialPageComponent implements OnInit {
 		if (isLoggedIn === "true") {
 			this.router.navigate(['/todos']);
 		} else {
-			this.router.navigate(['/page/login']);
+			this.router.navigate(['/page/home']);
 		}
 	}
 
