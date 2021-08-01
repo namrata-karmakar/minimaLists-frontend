@@ -11,7 +11,6 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoggedIn = sessionStorage.getItem('isLoggedIn');
-    console.log(this.isLoggedIn);
   }
 
 }
