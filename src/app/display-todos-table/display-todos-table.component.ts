@@ -1,7 +1,7 @@
-import { Component, Input, OnChanges, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, ViewChild } from '@angular/core';
 import { TodosDataDto, TodosService } from '../services/todos.service';
 import { DeleteTodoDialogComponent } from '../delete-todo-dialog/delete-todo-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
 	selector: 'app-display-todos-table',
@@ -14,32 +14,43 @@ export class DisplayTodosTableComponent implements OnChanges {
 	@Input() randomNumber: number = 0;
 	dataSource: TodosDataDto[] = [];
 
-	constructor(private todosService: TodosService, private dialog: MatDialog) { }
+	constructor(
+		private todosService: TodosService,
+		private dialog: MatDialog
+	) { }
 
 	ngOnChanges(): void {
 		this.getTodos();
 	}
 
+	addTodoDialogCloseEventHandler() {
+		this.getTodos();
+	}
+	
 	async getTodos() {
 		const userID: string | null = sessionStorage.getItem("userID");
 		this.dataSource = await this.todosService.getTodosByUserId(userID);
 		this.dataSource = this.dataSource.reverse();
 	}
 
-	openDeleteTodoConfirmDialog() {
-		let dialogRef = this.dialog.open(DeleteTodoDialogComponent, {
-			height: '400px',
-			width: '600px',
-		})
+	openDeleteTodoDialog(todo: TodosDataDto) {
+		const dialogConfig = new MatDialogConfig();
+		dialogConfig.position = {
+			'top': '0',
+		};
+		dialogConfig.data = {
+			_id: todo._id,
+			todo: todo.todo,
+		}
+		dialogConfig.width = '30%'
+		let dialogRef = this.dialog.open(DeleteTodoDialogComponent, dialogConfig);
+		dialogRef.afterClosed().subscribe(async () => {
+			try {
+				await this.getTodos();
+			} catch (e) {
+				console.error(e);
+			}
+		});
 	}
 
-	async deleteTodo(todo: any): Promise<void> {
-		const { _id } = todo;
-		await this.todosService.deleteTodoById(_id);
-		await this.getTodos();
-	}
-
-	addTodoDialogCloseEventHandler() {
-		this.getTodos();
-	}
 }
