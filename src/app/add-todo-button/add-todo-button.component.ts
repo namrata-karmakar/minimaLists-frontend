@@ -13,7 +13,7 @@ export class AddTodoButtonComponent implements OnInit {
 
   constructor(private dialog: MatDialog) { }
   
-  openDialog() {
+  openAddTodoDialog() {
     let dialogRef = this.dialog.open(AddTodoDialogComponent, {
       height: "50vh",
       width: "30vw"
