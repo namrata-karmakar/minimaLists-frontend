@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { LoginDto, UserService } from '../services/user.service';
+import { LoginDto, LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
+  providers: [LoginService]
 })
 export class LoginComponent implements OnInit {
   hide: boolean = true;
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService,
+    private loginService: LoginService,
     private router: Router,
     private snackBar: MatSnackBar
   ) { }
@@ -40,7 +41,7 @@ export class LoginComponent implements OnInit {
 
   async onSubmit() {
     try {
-      const response = await this.userService.login(
+      const response = await this.loginService.login(
         this.loginFormGroup.value as LoginDto
       );
       const { token, userID } = response;

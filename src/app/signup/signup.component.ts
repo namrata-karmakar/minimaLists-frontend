@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar/';
-import { SignupDto, UserService } from '../services/user.service';
+import { SignupDto } from './signup.service';
 import { dateOfBirthValidator } from '../validations/dateOfBirthValidator';
 import { passwordsMatchValidator } from '../validations/passwordsMatchValidator';
+import { SignupService } from './signup.service';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
+  providers: [ SignupService ]
 })
 export class SignupComponent implements OnInit {
   hidePassword = true;
@@ -17,7 +19,7 @@ export class SignupComponent implements OnInit {
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   constructor(
     private formBuilder: FormBuilder, 
-    private userService: UserService, 
+    private signupService: SignupService, 
     private _snackBar: MatSnackBar
   ) { }
 
@@ -76,7 +78,7 @@ export class SignupComponent implements OnInit {
 
   async onSubmit() {
     try {
-      await this.userService.signup(this.signupFormGroup.value as SignupDto);
+      await this.signupService.signup(this.signupFormGroup.value as SignupDto);
     } catch (e) {
       console.error(e);
     }
