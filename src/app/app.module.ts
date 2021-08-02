@@ -24,7 +24,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
 import { TodosService } from './services/todos.service';
-import { UserService } from './services/user.service';
 import { DisplayTodosTableComponent } from './display-todos-table/display-todos-table.component';
 import { ViewTodosPageComponent } from './view-todos-page/view-todos-page.component';
 import { LoggedOutNavbarComponent } from './logged-out-navbar/logged-out-navbar.component';
@@ -88,7 +87,7 @@ import { InterstitialPageComponent } from './interstitial-page/interstitial-page
     MatListModule,
     MatSnackBarModule
   ],
-  providers: [UserService, TodosService],
+  providers: [TodosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
