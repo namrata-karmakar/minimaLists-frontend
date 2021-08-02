@@ -12,8 +12,8 @@ export class InterstitialPageComponent implements OnInit {
 
 	ngOnInit(): void {
 		const isLoggedIn = sessionStorage.getItem('isLoggedIn');
-		console.log("isLoggedIn", isLoggedIn);
-		if (isLoggedIn === "true") {
+		console.log('sLoggedIn', isLoggedIn);
+		if (isLoggedIn === 'true') {
 			this.router.navigate(['/todos']);
 		} else {
 			this.router.navigate(['/page/home']);
