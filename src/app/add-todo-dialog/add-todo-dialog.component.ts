@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { CustomSnackbarService } from '../services/custom-snackbar.service';
 import { TodosDataDto, TodosService } from '../services/todos.service';
 
 @Component({
@@ -17,7 +18,8 @@ export class AddTodoDialogComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private todosService: TodosService,
-    public dialogRef: MatDialogRef<AddTodoDialogComponent>
+    public dialogRef: MatDialogRef<AddTodoDialogComponent>,
+    private customSnackbarService: CustomSnackbarService
   ) { }
 
   addTodoFormGroup = this.formBuilder.group({
@@ -34,14 +36,16 @@ export class AddTodoDialogComponent implements OnInit {
     try {
       await this.todosService.addTodo(this.addTodoFormGroup.value as TodosDataDto);
       this.dialogRef.close();
+      this.customSnackbarService.openSuccessSnackbar("To-do added successsfully!");
     } catch (e) {
       console.error(e);
+      this.customSnackbarService.openErrorSnackbar(e);
     }
   }
 
 }
 
-export type Status = {
+export interface Status {
   value: string;
   viewValue: string;
 }
