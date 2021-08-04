@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CustomSnackbarService } from '../services/custom-snackbar.service';
 
 @Component({
   selector: 'app-logout-dialog',
@@ -8,7 +9,10 @@ import { Router } from '@angular/router';
 })
 export class LogoutDialogComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private customSnackbar: CustomSnackbarService
+    ) { }
 
   ngOnInit(): void {
   }
@@ -16,6 +20,7 @@ export class LogoutDialogComponent implements OnInit {
   logout() {
     sessionStorage.clear();
     this.router.navigate(['/page/login']);
+    this.customSnackbar.openSuccessSnackbar('Successfully Logged Out!');
   }
 
 }
