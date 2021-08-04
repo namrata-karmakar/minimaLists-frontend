@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { CustomSnackbarService } from '../services/custom-snackbar.service';
 import { LoginDto, LoginService } from './login.service';
 
 @Component({
@@ -12,15 +12,12 @@ import { LoginDto, LoginService } from './login.service';
 })
 export class LoginComponent implements OnInit {
   hide: boolean = true;
-  duration: number = 3000;
-  horizontalPosition: MatSnackBarHorizontalPosition = 'end';
-  verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   constructor(
     private formBuilder: FormBuilder,
     private loginService: LoginService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private customSnackbarService: CustomSnackbarService
   ) { }
 
   loginFormGroup = this.formBuilder.group({
@@ -50,11 +47,11 @@ export class LoginComponent implements OnInit {
       if (token) {
         sessionStorage.setItem('isLoggedIn', 'true');
         this.navigateToViewTodosPage();
-        this.openSnackBar('Successfully logged in');
+        this.customSnackbarService.openSuccessSnackbar('Successfully Logged In');
       }
     } catch (e) {
       console.error(e);
-      this.openSnackBar(e.error);
+      this.customSnackbarService.openErrorSnackbar(e.error);
     }
   }
 
@@ -62,13 +59,6 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/todos']);
   }
 
-  openSnackBar(message: string) {
-    this.snackBar.open(`${message}`, 'Close', {
-      panelClass: 'my-custom-snackbar',
-      duration: this.duration,
-      horizontalPosition: this.horizontalPosition,
-      verticalPosition: this.verticalPosition,
-    });
-  }
+
 
 }
