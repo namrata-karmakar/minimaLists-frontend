@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CustomSnackbarService } from '../services/custom-snackbar.service';
 import { TodosService, TodosDataDto } from '../services/todos.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class DeleteTodoDialogComponent implements OnInit {
   constructor(
     private todosService: TodosService,
     private dialogRef: MatDialogRef<DeleteTodoDialogComponent>,
+    private customSnackbarService: CustomSnackbarService,
     @Inject(MAT_DIALOG_DATA) public data: TodosDataDto
   ) { }
 
@@ -27,8 +29,10 @@ export class DeleteTodoDialogComponent implements OnInit {
       const { _id } = data;
       await this.todosService.deleteTodoById(_id);
       this.dialogRef.close();
+      this.customSnackbarService.openSuccessSnackbar("To-do deleted successfully!");
     } catch (e) {
       console.error(e);
+      this.customSnackbarService.openErrorSnackbar(e);
     }
 
   }
