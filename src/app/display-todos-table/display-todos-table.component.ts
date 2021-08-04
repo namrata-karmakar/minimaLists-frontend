@@ -28,9 +28,13 @@ export class DisplayTodosTableComponent implements OnChanges {
 	}
 	
 	async getTodos() {
-		const userID: string | null = sessionStorage.getItem("userID");
-		this.dataSource = await this.todosService.getTodosByUserId(userID);
-		this.dataSource = this.dataSource.reverse();
+		try {
+			const userID: string | null = sessionStorage.getItem("userID");
+			this.dataSource = await this.todosService.getTodosByUserId(userID);
+			this.dataSource = this.dataSource.reverse();
+		} catch (e) {
+			console.error(e);
+		}
 	}
 
 	openDeleteTodoDialog(todo: TodosDataDto) {
