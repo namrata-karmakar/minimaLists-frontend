@@ -35,12 +35,12 @@ export class TodosService {
   }
 }
 
-export type TodoDto = {
+export interface TodoDto {
   todo: string;
   status: string;
 }
 
-export type TodosDataDto = {
+export interface TodosDataDto {
   _id: string;
   createdOn: string;
   todo: string;
