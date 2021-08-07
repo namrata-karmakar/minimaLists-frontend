@@ -4,37 +4,33 @@ import { CustomSnackbarService } from '../services/custom-snackbar.service';
 import { TodosService, TodosDataDto } from '../services/todos.service';
 
 @Component({
-  selector: 'app-delete-todo-dialog',
-  templateUrl: './delete-todo-dialog.component.html',
-  styleUrls: ['./delete-todo-dialog.component.css']
+    selector: 'app-delete-todo-dialog',
+    templateUrl: './delete-todo-dialog.component.html',
+    styleUrls: ['./delete-todo-dialog.component.css']
 })
 export class DeleteTodoDialogComponent implements OnInit {
+    constructor(
+        private todosService: TodosService,
+        private dialogRef: MatDialogRef<DeleteTodoDialogComponent>,
+        private customSnackbarService: CustomSnackbarService,
+        @Inject(MAT_DIALOG_DATA) public data: TodosDataDto
+    ) {}
 
-  constructor(
-    private todosService: TodosService,
-    private dialogRef: MatDialogRef<DeleteTodoDialogComponent>,
-    private customSnackbarService: CustomSnackbarService,
-    @Inject(MAT_DIALOG_DATA) public data: TodosDataDto
-  ) { }
+    ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-
-  onCancel() {
-    this.dialogRef.close();
-  }
-
-  async deleteTodo(data: TodosDataDto): Promise<void> {
-    try {
-      const { _id } = data;
-      await this.todosService.deleteTodoById(_id);
-      this.dialogRef.close();
-      this.customSnackbarService.openSuccessSnackbar("To-do deleted successfully!");
-    } catch (e) {
-      console.error(e);
-      this.customSnackbarService.openErrorSnackbar(e);
+    onCancel() {
+        this.dialogRef.close();
     }
 
-  }
-
+    async deleteTodo(data: TodosDataDto): Promise<void> {
+        try {
+            const { _id } = data;
+            const res = await this.todosService.deleteTodoById(_id);
+            this.dialogRef.close();
+            this.customSnackbarService.openSuccessSnackbar('To-do deleted successfully!');
+        } catch (e) {
+            console.error(e);
+            this.customSnackbarService.openErrorSnackbar(e);
+        }
+    }
 }

@@ -3,24 +3,18 @@ import { Router } from '@angular/router';
 import { CustomSnackbarService } from '../services/custom-snackbar.service';
 
 @Component({
-  selector: 'app-logout-dialog',
-  templateUrl: './logout-dialog.component.html',
-  styleUrls: ['./logout-dialog.component.css']
+    selector: 'app-logout-dialog',
+    templateUrl: './logout-dialog.component.html',
+    styleUrls: ['./logout-dialog.component.css']
 })
 export class LogoutDialogComponent implements OnInit {
+    constructor(private router: Router, private customSnackbar: CustomSnackbarService) {}
 
-  constructor(
-    private router: Router,
-    private customSnackbar: CustomSnackbarService
-    ) { }
+    ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-
-  logout() {
-    sessionStorage.clear();
-    this.router.navigate(['/page/login']);
-    this.customSnackbar.openSuccessSnackbar('Successfully Logged Out!');
-  }
-
+    logout() {
+        sessionStorage.clear();
+        this.router.navigate(['/page/login']);
+        this.customSnackbar.openSuccessSnackbar('Successfully Logged Out!');
+    }
 }

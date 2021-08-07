@@ -10,31 +10,33 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { LoggedOutNavbarComponent } from './logged-out-navbar.component';
 
 describe('NavbarComponent', () => {
-  let component: LoggedOutNavbarComponent;
-  let fixture: ComponentFixture<LoggedOutNavbarComponent>;
+    let component: LoggedOutNavbarComponent;
+    let fixture: ComponentFixture<LoggedOutNavbarComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [LoggedOutNavbarComponent],
-      imports: [
-        NoopAnimationsModule,
-        LayoutModule,
-        MatButtonModule,
-        MatIconModule,
-        MatListModule,
-        MatSidenavModule,
-        MatToolbarModule,
-      ]
-    }).compileComponents();
-  }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [LoggedOutNavbarComponent],
+                imports: [
+                    NoopAnimationsModule,
+                    LayoutModule,
+                    MatButtonModule,
+                    MatIconModule,
+                    MatListModule,
+                    MatSidenavModule,
+                    MatToolbarModule
+                ]
+            }).compileComponents();
+        })
+    );
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(LoggedOutNavbarComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(LoggedOutNavbarComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should compile', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should compile', () => {
+        expect(component).toBeTruthy();
+    });
 });

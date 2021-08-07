@@ -1,95 +1,97 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar/';
+import {
+    MatSnackBar,
+    MatSnackBarHorizontalPosition,
+    MatSnackBarVerticalPosition
+} from '@angular/material/snack-bar/';
 import { SignupDto } from './signup.service';
 import { dateOfBirthValidator } from '../validations/dateOfBirthValidator';
 import { passwordsMatchValidator } from '../validations/passwordsMatchValidator';
 import { SignupService } from './signup.service';
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css'],
-  providers: [ SignupService ]
+    selector: 'app-signup',
+    templateUrl: './signup.component.html',
+    styleUrls: ['./signup.component.css'],
+    providers: [SignupService]
 })
 export class SignupComponent implements OnInit {
-  hidePassword = true;
-  hideConfirmPassword = true;
-  horizontalPosition: MatSnackBarHorizontalPosition = 'end';
-  verticalPosition: MatSnackBarVerticalPosition = 'top';
-  constructor(
-    private formBuilder: FormBuilder, 
-    private signupService: SignupService, 
-    private _snackBar: MatSnackBar
-  ) { }
+    hidePassword = true;
+    hideConfirmPassword = true;
+    horizontalPosition: MatSnackBarHorizontalPosition = 'end';
+    verticalPosition: MatSnackBarVerticalPosition = 'top';
+    constructor(
+        private formBuilder: FormBuilder,
+        private signupService: SignupService,
+        private _snackBar: MatSnackBar
+    ) {}
 
-  signupFormGroup = this.formBuilder.group(
-    {
-      username: ['', [Validators.email, Validators.required]],
-      password: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(8),
-          Validators.pattern(
-            /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/
-          ),
-        ],
-      ],
-      confirmPassword: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(8),
-          Validators.pattern(
-            /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/
-          ),
-        ],
-      ],
-      dob: ['', [Validators.required, dateOfBirthValidator()]],
-      tnc: ['', Validators.requiredTrue],
-    },
-    {
-      validators: passwordsMatchValidator,
+    signupFormGroup = this.formBuilder.group(
+        {
+            username: ['', [Validators.email, Validators.required]],
+            password: [
+                '',
+                [
+                    Validators.required,
+                    Validators.minLength(8),
+                    Validators.pattern(
+                        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/
+                    )
+                ]
+            ],
+            confirmPassword: [
+                '',
+                [
+                    Validators.required,
+                    Validators.minLength(8),
+                    Validators.pattern(
+                        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/
+                    )
+                ]
+            ],
+            dob: ['', [Validators.required, dateOfBirthValidator()]],
+            tnc: ['', Validators.requiredTrue]
+        },
+        {
+            validators: passwordsMatchValidator
+        }
+    );
+
+    get username(): FormControl {
+        return this.signupFormGroup.get('username') as FormControl;
     }
-  );
 
-  get username(): FormControl {
-    return this.signupFormGroup.get('username') as FormControl;
-  }
-
-  get password(): FormControl {
-    return this.signupFormGroup.get('password') as FormControl;
-  }
-
-  get confirmPassword(): FormControl {
-    return this.signupFormGroup.get('confirmPassword') as FormControl;
-  }
-
-  get dob(): FormControl {
-    return this.signupFormGroup.get('dob') as FormControl;
-  }
-
-  get tnc(): FormControl {
-    return this.signupFormGroup.get('tnc') as FormControl;
-  }
-
-  ngOnInit(): void { }
-
-  async onSubmit() {
-    try {
-      await this.signupService.signup(this.signupFormGroup.value as SignupDto);
-    } catch (e) {
-      console.error(e);
+    get password(): FormControl {
+        return this.signupFormGroup.get('password') as FormControl;
     }
-  }
 
-  openSnackBar() {
-    this._snackBar.open('Cannonball!!', 'Splash', {
-      horizontalPosition: this.horizontalPosition,
-      verticalPosition: this.verticalPosition,
-    });
-  }
+    get confirmPassword(): FormControl {
+        return this.signupFormGroup.get('confirmPassword') as FormControl;
+    }
 
+    get dob(): FormControl {
+        return this.signupFormGroup.get('dob') as FormControl;
+    }
+
+    get tnc(): FormControl {
+        return this.signupFormGroup.get('tnc') as FormControl;
+    }
+
+    ngOnInit(): void {}
+
+    async onSubmit() {
+        try {
+            await this.signupService.signup(this.signupFormGroup.value as SignupDto);
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+    openSnackBar() {
+        this._snackBar.open('Cannonball!!', 'Splash', {
+            horizontalPosition: this.horizontalPosition,
+            verticalPosition: this.verticalPosition
+        });
+    }
 }
-

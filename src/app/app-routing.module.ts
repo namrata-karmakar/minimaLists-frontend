@@ -7,39 +7,41 @@ import { PageComponent } from './page/page.component';
 import { SignupComponent } from './signup/signup.component';
 import { ViewTodosPageComponent } from './view-todos-page/view-todos-page.component';
 
-const routes: Routes = [{
-  path: '',
-  component: InterstitialPageComponent,
-},
-{
-  path: 'page',
-  component: PageComponent,
-  children: [
+const routes: Routes = [
     {
-      path: '',
-      component: InterstitialPageComponent,
+        path: '',
+        component: InterstitialPageComponent
     },
     {
-      path: 'home',
-      component: HomeComponent,
+        path: 'page',
+        component: PageComponent,
+        children: [
+            {
+                path: '',
+                component: InterstitialPageComponent
+            },
+            {
+                path: 'home',
+                component: HomeComponent
+            },
+            {
+                path: 'login',
+                component: LoginComponent
+            },
+            {
+                path: 'signup',
+                component: SignupComponent
+            }
+        ]
     },
     {
-      path: 'login',
-      component: LoginComponent,
-    },
-    {
-      path: 'signup',
-      component: SignupComponent
+        path: 'todos',
+        component: ViewTodosPageComponent
     }
-  ]
-},
-{
-  path: 'todos',
-  component: ViewTodosPageComponent
-}];
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

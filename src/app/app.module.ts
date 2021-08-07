@@ -7,14 +7,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input'
-import { MatIconModule } from '@angular/material/icon'
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { SignupComponent } from './signup/signup.component'
+import { SignupComponent } from './signup/signup.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
 import { AddTodoButtonComponent } from './add-todo-button/add-todo-button.component';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -42,52 +42,52 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { InterstitialPageComponent } from './interstitial-page/interstitial-page.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    SignupComponent,
-    AddTodoButtonComponent,
-    AddTodoDialogComponent,
-    DisplayTodosTableComponent,
-    ViewTodosPageComponent,
-    LoggedOutNavbarComponent,
-    PageComponent,
-    FooterComponent,
-    HomeComponent,
-    LoggedInNavbarComponent,
-    LogoutComponent,
-    LogoutDialogComponent,
-    DeleteTodoDialogComponent,
-    NavbarComponent,
-    InterstitialPageComponent,
-  ],
-  entryComponents: [AddTodoDialogComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    MatButtonModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatCheckboxModule,
-    HttpClientModule,
-    MatTableModule,
-    MatDialogModule,
-    MatSelectModule,
-    FlexLayoutModule,
-    MatToolbarModule,
-    MatDividerModule,
-    LayoutModule,
-    MatSidenavModule,
-    MatListModule,
-    MatSnackBarModule
-  ],
-  providers: [TodosService],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        SignupComponent,
+        AddTodoButtonComponent,
+        AddTodoDialogComponent,
+        DisplayTodosTableComponent,
+        ViewTodosPageComponent,
+        LoggedOutNavbarComponent,
+        PageComponent,
+        FooterComponent,
+        HomeComponent,
+        LoggedInNavbarComponent,
+        LogoutComponent,
+        LogoutDialogComponent,
+        DeleteTodoDialogComponent,
+        NavbarComponent,
+        InterstitialPageComponent
+    ],
+    entryComponents: [AddTodoDialogComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatIconModule,
+        MatButtonModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatCheckboxModule,
+        HttpClientModule,
+        MatTableModule,
+        MatDialogModule,
+        MatSelectModule,
+        FlexLayoutModule,
+        MatToolbarModule,
+        MatDividerModule,
+        LayoutModule,
+        MatSidenavModule,
+        MatListModule,
+        MatSnackBarModule
+    ],
+    providers: [TodosService],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
