@@ -9,6 +9,7 @@ import { SignupDto } from './signup.service';
 import { dateOfBirthValidator } from '../validations/dateOfBirthValidator';
 import { passwordsMatchValidator } from '../validations/passwordsMatchValidator';
 import { SignupService } from './signup.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-signup',
@@ -24,7 +25,8 @@ export class SignupComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         private signupService: SignupService,
-        private _snackBar: MatSnackBar
+        private _snackBar: MatSnackBar,
+        private router: Router
     ) {}
 
     signupFormGroup = this.formBuilder.group(
@@ -83,9 +85,14 @@ export class SignupComponent implements OnInit {
     async onSubmit() {
         try {
             await this.signupService.signup(this.signupFormGroup.value as SignupDto);
+            this.navigateToLoginPage();
         } catch (e) {
             console.error(e);
         }
+    }
+
+    navigateToLoginPage() {
+        this.router.navigate(['/page/login']);
     }
 
     openSnackBar() {
