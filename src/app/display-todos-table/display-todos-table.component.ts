@@ -2,6 +2,7 @@ import { Component, Input, OnChanges } from '@angular/core';
 import { TodosDataDto, TodosService } from '../services/todos.service';
 import { DeleteTodoDialogComponent } from '../delete-todo-dialog/delete-todo-dialog.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { EditTodoDialogComponent } from '../edit-todo-dialog/edit-todo-dialog.component';
 
 @Component({
     selector: 'app-display-todos-table',
@@ -31,6 +32,24 @@ export class DisplayTodosTableComponent implements OnChanges {
         } catch (e) {
             console.error(e);
         }
+    }
+
+    openEditTodoDialog(todo: TodosDataDto) {
+        const dialogConfig = new MatDialogConfig();
+        dialogConfig.data = {
+            _id: todo._id,
+            todo: todo.todo,
+            status: todo.status
+        };
+        dialogConfig.width = '30%';
+        const dialogRef = this.dialog.open(EditTodoDialogComponent, dialogConfig);
+        dialogRef.afterClosed().subscribe(async () => {
+            try {
+                await this.getTodos();
+            } catch (e) {
+                console.error(e);
+            }
+        });
     }
 
     openDeleteTodoDialog(todo: TodosDataDto) {
