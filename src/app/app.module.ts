@@ -40,6 +40,7 @@ import { LogoutDialogComponent } from './logout-dialog/logout-dialog.component';
 import { DeleteTodoDialogComponent } from './delete-todo-dialog/delete-todo-dialog.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { InterstitialPageComponent } from './interstitial-page/interstitial-page.component';
+import { EditTodoDialogComponent } from './edit-todo-dialog/edit-todo-dialog.component';
 
 @NgModule({
     declarations: [
@@ -59,7 +60,8 @@ import { InterstitialPageComponent } from './interstitial-page/interstitial-page
         LogoutDialogComponent,
         DeleteTodoDialogComponent,
         NavbarComponent,
-        InterstitialPageComponent
+        InterstitialPageComponent,
+        EditTodoDialogComponent
     ],
     entryComponents: [AddTodoDialogComponent],
     imports: [
