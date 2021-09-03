@@ -26,6 +26,15 @@ export class TodosService {
             .toPromise();
     }
 
+    getTodoById(_id: string) {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'x-token-header': `${sessionStorage.getItem('token')}`
+            })
+        };
+        return this.http.get(`${environment.TODO}/id/${_id}`, httpOptions).toPromise();
+    }
+
     deleteTodoById(_id: string) {
         const httpOptions = {
             headers: new HttpHeaders({
@@ -33,6 +42,15 @@ export class TodosService {
             })
         };
         return this.http.delete(`${environment.TODO}/id/${_id}`, httpOptions).toPromise();
+    }
+
+    editTodoById(_id: string, todoData: TodosDataDto) {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'x-token-header': `${sessionStorage.getItem('token')}`
+            })
+        };
+        return this.http.put(`${environment.TODO}/id/${_id}`, todoData, httpOptions).toPromise();
     }
 }
 
