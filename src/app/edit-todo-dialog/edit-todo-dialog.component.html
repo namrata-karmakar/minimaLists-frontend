@@ -32,8 +32,9 @@
           color="primary"
           (click)="editTodo(data)"
           cdkFocusInitial
+          [disabled]="!editTodoFormGroup.valid"
         >
-          Create
+          Update
         </button>
       </div>
     </div>

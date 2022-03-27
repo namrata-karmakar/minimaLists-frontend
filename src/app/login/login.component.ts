@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TOASTIE_MESSAGES } from 'src/environments/toastie-messages';
 import { CustomSnackbarService } from '../services/custom-snackbar.service';
 import { LoginDto, LoginService } from './login.service';
 
@@ -47,7 +48,7 @@ export class LoginComponent implements OnInit {
             if (token) {
                 sessionStorage.setItem('isLoggedIn', 'true');
                 this.navigateToViewTodosPage();
-                this.customSnackbarService.openSuccessSnackbar('Successfully Logged In');
+                this.customSnackbarService.openSuccessSnackbar(`${TOASTIE_MESSAGES.loginSuccess}`);
             }
         } catch (e) {
             console.error(e);

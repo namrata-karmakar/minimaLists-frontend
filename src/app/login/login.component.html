@@ -2,7 +2,7 @@
 <div class="loginPage" fxLayout="column" fxLayoutAlign="start center">
   <mat-card>
     <h2>LOGIN</h2>
-    <p>Don't have an account? <a routerLink="/page/signup">Sign Up here</a></p>
+    <p>Don't have an account? <a routerLink="/page/signup">Sign Up</a></p>
     <form [formGroup]="loginFormGroup" fxLayout="column" fxLayoutAlign="none">
       <mat-form-field appearance="outline">
         <mat-label>Email Address</mat-label>
@@ -43,7 +43,7 @@
         >
           Submit
         </button>
-        <button mat-stroked-button routerLink="/signup">Sign Up</button>
+        <button mat-stroked-button routerLink="/page/signup">Sign Up</button>
       </div>
     </form>
     <a href="#">Forgot Password?</a>

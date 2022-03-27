@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TOASTIE_MESSAGES } from 'src/environments/toastie-messages';
 import { CustomSnackbarService } from '../services/custom-snackbar.service';
 
 @Component({
@@ -15,6 +16,6 @@ export class LogoutDialogComponent implements OnInit {
     logout() {
         sessionStorage.clear();
         this.router.navigate(['/page/login']);
-        this.customSnackbar.openSuccessSnackbar('Successfully Logged Out!');
+        this.customSnackbar.openSuccessSnackbar(`${TOASTIE_MESSAGES.logoutSuccess}`);
     }
 }

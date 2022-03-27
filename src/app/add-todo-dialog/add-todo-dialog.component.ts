@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { CustomSnackbarService } from '../services/custom-snackbar.service';
 import { TodosDataDto, TodosService } from '../services/todos.service';
+import { TOASTIE_MESSAGES } from '../../environments/toastie-messages'
 
 @Component({
     selector: 'app-add-todo-dialog',
@@ -38,10 +39,12 @@ export class AddTodoDialogComponent implements OnInit {
             );
             console.log(res);
             this.dialogRef.close();
-            this.customSnackbarService.openSuccessSnackbar('To-do added successsfully!');
+            this.customSnackbarService.openSuccessSnackbar(`${TOASTIE_MESSAGES.addTodoSuccess}`);
         } catch (e) {
+            // console.error(e.error.errors.map((error: any) => error.msg));
+            // console.error(JSON.stringify(e, null, 2));
+            // this.customSnackbarService.openErrorSnackbar(e.error.errors.map((error: any) => error.msg));
             console.error(e);
-            this.customSnackbarService.openErrorSnackbar(e);
         }
     }
 }

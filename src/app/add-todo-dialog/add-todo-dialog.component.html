@@ -1,4 +1,4 @@
-<form [formGroup]="addTodoFormGroup">
+<form [formGroup]="addTodoFormGroup" (ngSubmit)="onSubmit()">
   <div>
     <h1 mat-dialog-title>Add a To Do</h1>
     <div fxLayout="column" mat-dialog-content>
@@ -31,8 +31,8 @@
         type="submit"
         mat-raised-button
         color="primary"
-        (click)="onSubmit()"
         cdkFocusInitial
+
       >
         Create
       </button>

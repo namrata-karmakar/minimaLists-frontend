@@ -10,7 +10,8 @@ import { dateOfBirthValidator } from '../validations/dateOfBirthValidator';
 import { passwordsMatchValidator } from '../validations/passwordsMatchValidator';
 import { SignupService } from './signup.service';
 import { Router } from '@angular/router';
-
+import { CustomSnackbarService } from '../services/custom-snackbar.service';
+import { TOASTIE_MESSAGES } from '../../environments/toastie-messages'
 @Component({
     selector: 'app-signup',
     templateUrl: './signup.component.html',
@@ -26,7 +27,8 @@ export class SignupComponent implements OnInit {
         private formBuilder: FormBuilder,
         private signupService: SignupService,
         private _snackBar: MatSnackBar,
-        private router: Router
+        private router: Router,
+        private customSnackbarService: CustomSnackbarService
     ) {}
 
     signupFormGroup = this.formBuilder.group(
@@ -86,6 +88,7 @@ export class SignupComponent implements OnInit {
         try {
             await this.signupService.signup(this.signupFormGroup.value as SignupDto);
             this.navigateToLoginPage();
+            this.customSnackbarService.openSuccessSnackbar(`${TOASTIE_MESSAGES.signUpSuccess}`);
         } catch (e) {
             console.error(e);
         }

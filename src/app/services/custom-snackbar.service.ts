@@ -25,7 +25,7 @@ export class CustomSnackbarService {
     }
 
     openErrorSnackbar(message: string) {
-        this.snackBar.open(`${message}`, 'Close', {
+        this.snackBar.open(`${message} `, 'Close', {
             panelClass: 'my-custom-error-snackbar',
             duration: this.duration,
             horizontalPosition: this.horizontalPosition,

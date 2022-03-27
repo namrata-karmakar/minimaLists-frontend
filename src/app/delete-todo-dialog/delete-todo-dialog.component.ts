@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { TOASTIE_MESSAGES } from 'src/environments/toastie-messages';
 import { CustomSnackbarService } from '../services/custom-snackbar.service';
 import { TodosService, TodosDataDto } from '../services/todos.service';
 
@@ -27,10 +28,10 @@ export class DeleteTodoDialogComponent implements OnInit {
             const { _id } = data;
             const res = await this.todosService.deleteTodoById(_id);
             this.dialogRef.close();
-            this.customSnackbarService.openSuccessSnackbar('To-do deleted successfully!');
+            this.customSnackbarService.openSuccessSnackbar(`${TOASTIE_MESSAGES.deleteTodoSuccess}`);
         } catch (e) {
             console.error(e);
-            this.customSnackbarService.openErrorSnackbar(e);
+            this.customSnackbarService.openErrorSnackbar(e.message);
         }
     }
 }

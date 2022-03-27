@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { TOASTIE_MESSAGES } from 'src/environments/toastie-messages';
 import { Status } from '../add-todo-dialog/add-todo-dialog.component';
 import { CustomSnackbarService } from '../services/custom-snackbar.service';
 import { TodosDataDto, TodosService } from '../services/todos.service';
@@ -51,7 +52,7 @@ export class EditTodoDialogComponent implements OnInit {
             const { _id } = data;
             await this.todosService.editTodoById(_id, this.editTodoFormGroup.value as TodosDataDto);
             this.dialogRef.close();
-            this.customSnackbarService.openSuccessSnackbar('To-do edited successfully!');
+            this.customSnackbarService.openSuccessSnackbar(`${TOASTIE_MESSAGES.updateTodoSuccess}`);
         } catch (e) {
             console.error(e);
             this.customSnackbarService.openErrorSnackbar(e);
