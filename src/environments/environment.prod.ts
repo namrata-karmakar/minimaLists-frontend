@@ -1,3 +1,5 @@
 export const environment = {
-    production: true
+    production: true,
+    USER: 'user',
+    TODO: 'api/todo'
 };
